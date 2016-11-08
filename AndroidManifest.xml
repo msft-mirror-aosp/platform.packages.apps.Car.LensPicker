@@ -14,12 +14,14 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
         package="com.android.support.car.lenspicker" >
 
     <uses-sdk
         android:minSdkVersion="22"
         android:targetSdkVersion='23'/>
+
+    <!-- Permission to allow the LensPicker to set a default activity for an Intent. -->
+    <uses-permission android:name="android.permission.SET_PREFERRED_APPLICATIONS" />
 
     <application
         android:label="@string/app_label" >
@@ -27,6 +29,14 @@
         <activity android:name=".LensPickerActivity"
             android:theme="@style/Theme.FloatingLensPicker"
             android:label="LensPickerActivity"
+            android:resizeableActivity="true"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:noHistory="true" />
+
+        <activity android:name=".LensResolverActivity"
+            android:theme="@style/Theme.FloatingLensPicker"
+            android:label="LensResolverActivity"
             android:resizeableActivity="true"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"

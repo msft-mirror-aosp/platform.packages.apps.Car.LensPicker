@@ -23,8 +23,7 @@
     android:layout_height="wrap_content" >
 
     <com.android.car.stream.ui.StreamCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/stream_card"
         android:layout_width="match_parent"
         android:layout_height="@dimen/car_list_item_height"
         android:layout_marginBottom="@dimen/car_card_bottom_margin"
