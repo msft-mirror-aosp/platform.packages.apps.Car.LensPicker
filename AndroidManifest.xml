@@ -22,6 +22,7 @@
 
     <!-- Permission to allow the LensPicker to set a default activity for an Intent. -->
     <uses-permission android:name="android.permission.SET_PREFERRED_APPLICATIONS" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
     <application
         android:label="@string/app_label" >

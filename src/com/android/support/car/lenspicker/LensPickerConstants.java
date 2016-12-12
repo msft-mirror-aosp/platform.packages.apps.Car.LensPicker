@@ -41,4 +41,17 @@ public class LensPickerConstants {
      * a stored "preferred" app.
      */
     public static final String EXTRA_FACET_LAUNCH_PICKER = "launch_picker";
+
+    /**
+     * An extra used to specify a system command that the LensPicker should run. The available
+     * commands are the constants prefixed with "SYSTEM_COMMAND".
+     */
+    public static final String EXTRA_FACET_SYSTEM_COMMAND = "system_command";
+
+    /**
+     * A hard-coded string that can be specified as the value of the string extra
+     * {@link #EXTRA_FACET_SYSTEM_COMMAND}. This command will cause the
+     * notification shade to drop.
+     */
+    public static final String SYSTEM_COMMAND_SHOW_NOTIFICATIONS = "show_notifications";
 }

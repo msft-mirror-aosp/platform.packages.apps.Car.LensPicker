@@ -21,8 +21,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.text.TextUtils;
 import android.util.Log;
+import com.android.internal.statusbar.IStatusBarService;
 
 import java.net.URISyntaxException;
 
@@ -33,12 +36,22 @@ import java.net.URISyntaxException;
 public class LensPickerTrampolineActivity extends Activity {
     private static final String TAG = "LensPickerTrampoline";
 
+    /**
+     * A lock to be used when retrieving the {@link IStaturBarService}.
+     */
+    private final Object mServiceAcquireLock = new Object();
+
     private PackageManager mPackageManager;
     private SharedPreferences mSharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // One of the system commands is to show the notification shade. Everytime the trampoline
+        // is started, hide the shade because this could have corresponded to a different facet
+        // click.
+        hideNotificationsShade();
 
         mPackageManager = getPackageManager();
         mSharedPrefs = LensPickerUtils.getFacetSharedPrefs(this);
@@ -48,8 +61,14 @@ public class LensPickerTrampolineActivity extends Activity {
         mSharedPrefs.getString("", null);
 
         Intent intent = getIntent();
-        boolean alwaysLaunchPicker = intent.getBooleanExtra(
-                LensPickerConstants.EXTRA_FACET_LAUNCH_PICKER, false);
+
+        String systemCommand =
+                intent.getStringExtra(LensPickerConstants.EXTRA_FACET_SYSTEM_COMMAND);
+        if (systemCommand != null && executeSystemCommand(systemCommand)) {
+            finish();
+            return;
+        }
+
         String facetId = intent.getStringExtra(LensPickerConstants.EXTRA_FACET_ID);
 
         // If no facetId was passed to this activity, then that means that we cannot retrieve the
@@ -67,8 +86,10 @@ public class LensPickerTrampolineActivity extends Activity {
                 LensPickerConstants.EXTRA_FACET_CATEGORIES);
         String[] packages = intent.getStringArrayExtra(LensPickerConstants.EXTRA_FACET_PACKAGES);
 
-        Intent launchIntent;
+        boolean alwaysLaunchPicker = intent.getBooleanExtra(
+                LensPickerConstants.EXTRA_FACET_LAUNCH_PICKER, false);
 
+        Intent launchIntent;
         if (!alwaysLaunchPicker && savedPackageName != null) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Launching saved package: " + savedPackageName);
@@ -89,6 +110,21 @@ public class LensPickerTrampolineActivity extends Activity {
 
         startActivity(launchIntent);
         finish();
+    }
+
+    /**
+     * Executes the given system command and returns {@code true} if the command succeeded.
+     */
+    private boolean executeSystemCommand(String command) {
+        switch (command) {
+            case LensPickerConstants.SYSTEM_COMMAND_SHOW_NOTIFICATIONS:
+                expandNotificationShade();
+                return true;
+
+            default:
+                Log.w(TAG, "Unknown system command: " + command);
+                return false;
+        }
     }
 
     /**
@@ -155,5 +191,33 @@ public class LensPickerTrampolineActivity extends Activity {
         LensPickerUtils.launch(this /* context */, mSharedPrefs, facetId, packageName,
                 launchIntent);
         return true;
+    }
+
+    private void expandNotificationShade() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.expandNotificationsPanel();
+            } catch (RemoteException e) {
+                // Do nothing
+            }
+        }
+    }
+
+    private void hideNotificationsShade() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.collapsePanels();
+            } catch (RemoteException e) {
+                // Do nothing
+            }
+        }
+    }
+
+    private IStatusBarService getStatusBarService() {
+        synchronized (mServiceAcquireLock) {
+            return IStatusBarService.Stub.asInterface(ServiceManager.getService("statusbar"));
+        }
     }
 }
