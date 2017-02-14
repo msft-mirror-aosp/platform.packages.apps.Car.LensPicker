@@ -16,6 +16,7 @@
 package com.android.support.car.lenspicker;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -188,8 +189,14 @@ public class LensPickerTrampolineActivity extends Activity {
             Log.d(TAG, "Launching last launched application.");
         }
 
-        LensPickerUtils.launch(this /* context */, mSharedPrefs, facetId, packageName,
+        try {
+            LensPickerUtils.launch(this /* context */, mSharedPrefs, facetId, packageName,
                 launchIntent);
+        } catch (ActivityNotFoundException e) {
+            // This can happen during development if someone changes the Activity used by an app.
+            Log.e(TAG, "Unable to launch activity! " + packageName, e);
+            return false;
+        }
         return true;
     }
 
