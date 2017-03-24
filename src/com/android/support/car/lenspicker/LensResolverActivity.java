@@ -28,7 +28,6 @@ import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.provider.MediaStore;
 import android.support.annotation.StringRes;
-import android.support.car.ui.PagedListView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +35,7 @@ import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import com.android.car.stream.ui.ColumnCalculator;
+import com.android.car.view.PagedListView;
 
 import java.util.Iterator;
 import java.util.List;

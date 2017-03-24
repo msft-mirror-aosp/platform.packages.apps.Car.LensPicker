@@ -24,11 +24,12 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.service.media.MediaBrowserService;
-import android.support.car.ui.PagedListView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+
+import com.android.car.view.PagedListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -214,7 +215,7 @@ public class LensPickerActivity extends Activity implements LensPickerSelectionH
     }
 
     /**
-     * Default {@link android.support.car.ui.PagedListView.Decoration} for the {@link PagedListView}
+     * Default {@link com.android.car.view.PagedListView.Decoration} for the {@link PagedListView}
      * that removes the dividing lines between items.
      */
     private static class ItemDecoration extends PagedListView.Decoration {

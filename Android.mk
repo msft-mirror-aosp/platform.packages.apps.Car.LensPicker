@@ -42,14 +42,10 @@ LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.appcompat
 LOCAL_STATIC_JAVA_LIBRARIES += android-support-v7-appcompat
 endif
 
-
-
 LOCAL_PROGUARD_ENABLED := disabled
 
 LOCAL_DEX_PREOPT := false
 
 LOCAL_CERTIFICATE := platform
-
-include packages/services/Car/car-support-lib/car-support.mk
 
 include $(BUILD_PACKAGE)
