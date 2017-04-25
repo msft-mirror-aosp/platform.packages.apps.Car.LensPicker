@@ -218,7 +218,7 @@ public class LensPickerActivity extends Activity implements LensPickerSelectionH
      * Default {@link com.android.car.view.PagedListView.Decoration} for the {@link PagedListView}
      * that removes the dividing lines between items.
      */
-    private static class ItemDecoration extends PagedListView.Decoration {
+    private static class ItemDecoration extends PagedListView.DividerDecoration {
         public ItemDecoration(Context context) {
             super(context);
         }

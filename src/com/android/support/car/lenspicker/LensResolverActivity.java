@@ -301,7 +301,7 @@ public class LensResolverActivity extends Activity implements
      * Default {@link PagedListView.Decoration} for the {@link PagedListView}
      * that removes the dividing lines between items.
      */
-    private static class ItemDecoration extends PagedListView.Decoration {
+    private static class ItemDecoration extends PagedListView.DividerDecoration {
         public ItemDecoration(Context context) {
             super(context);
         }
