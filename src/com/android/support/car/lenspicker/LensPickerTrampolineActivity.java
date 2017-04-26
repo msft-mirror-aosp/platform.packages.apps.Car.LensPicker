@@ -56,10 +56,6 @@ public class LensPickerTrampolineActivity extends Activity {
 
         mPackageManager = getPackageManager();
         mSharedPrefs = LensPickerUtils.getFacetSharedPrefs(this);
-        // The next line causes the shared prefs to actually be faulted in so that subsequent
-        // accesses are fast otherwise the first access that goes and looks at the file needs
-        // to hit the disk and can take tens of milliseconds.
-        mSharedPrefs.getString("", null);
 
         Intent intent = getIntent();
 
@@ -96,8 +92,7 @@ public class LensPickerTrampolineActivity extends Activity {
                 Log.d(TAG, "Launching saved package: " + savedPackageName);
             }
 
-            launchIntent = LensPickerUtils.getLaunchIntentCached(mPackageManager,
-                    savedPackageName, mSharedPrefs, false);
+            launchIntent = mPackageManager.getLaunchIntentForPackage(savedPackageName);
         } else {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Delegating to LensPickerActivity to handle application launch.");
