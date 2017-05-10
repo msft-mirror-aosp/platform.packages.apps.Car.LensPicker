@@ -96,7 +96,7 @@ public class LensPickerAdapter extends RecyclerView.Adapter<LensPickerRow>
                 ResolveInfo rInfo = mResolveInfos.get(i);
                 String packageName = LensPickerUtils.getPackageName(rInfo);
                 Intent launchIntent = LensPickerUtils.getLaunchIntent(packageName, rInfo,
-                        mPackageManager, mSharedPrefs);
+                        mPackageManager);
                 if (launchIntent == null) {
                     Log.w(TAG, "No launch intent for package " + packageName + " skipping.");
                     continue;
