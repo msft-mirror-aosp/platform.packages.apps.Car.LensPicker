@@ -89,7 +89,7 @@ public class LensPickerActivity extends Activity implements LensPickerSelectionH
             ResolveInfo rInfo = resolveInfos.get(0);
             String packageName = LensPickerUtils.getPackageName(rInfo);
             Intent launchIntent = LensPickerUtils.getLaunchIntent(packageName, rInfo,
-                    mPackageManager, mSharedPrefs);
+                    mPackageManager);
             if (launchIntent != null) {
                 launch(facetId, packageName, launchIntent);
             } else {

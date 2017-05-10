@@ -94,7 +94,7 @@ public class ResolverAdapter extends RecyclerView.Adapter<ResolverListRow>
             for (ResolveInfo info : mResolveInfos) {
                 String packageName = LensPickerUtils.getPackageName(info);
                 Intent launchIntent = LensPickerUtils.getLaunchIntent(packageName, info,
-                        packageManager, sharedPref);
+                        packageManager);
 
                 try {
                     ApplicationInfo aInfo = packageManager.getApplicationInfo(packageName, 0);
