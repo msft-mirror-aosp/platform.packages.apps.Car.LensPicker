@@ -21,7 +21,8 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
-LOCAL_RESOURCE_DIR += frameworks/support/design/res
+LOCAL_RESOURCE_DIR += $(SUPPORT_LIBRARY_ROOT)/core-ui/res
+LOCAL_RESOURCE_DIR += $(SUPPORT_LIBRARY_ROOT)/design/res
 
 LOCAL_PACKAGE_NAME := CarLensPickerApp
 
@@ -37,7 +38,7 @@ LOCAL_AAPT_FLAGS += --extra-packages android.support.design
 
 # Include support-v7-appcompat, if not already included
 ifeq (,$(findstring android-support-v7-appcompat,$(LOCAL_STATIC_JAVA_LIBRARIES)))
-LOCAL_RESOURCE_DIR += frameworks/support/v7/appcompat/res
+LOCAL_RESOURCE_DIR += $(SUPPORT_LIBRARY_ROOT)/v7/appcompat/res
 LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.appcompat
 LOCAL_STATIC_JAVA_LIBRARIES += android-support-v7-appcompat
 endif
