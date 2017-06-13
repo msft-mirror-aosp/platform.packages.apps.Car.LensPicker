@@ -42,19 +42,13 @@ public class LensPickerTrampolineActivity extends Activity {
      */
     private final Object mServiceAcquireLock = new Object();
 
-    private PackageManager mPackageManager;
     private SharedPreferences mSharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // One of the system commands is to show the notification shade. Everytime the trampoline
-        // is started, hide the shade because this could have corresponded to a different facet
-        // click.
-        hideNotificationsShade();
-
-        mPackageManager = getPackageManager();
+        PackageManager packageManager = getPackageManager();
         mSharedPrefs = LensPickerUtils.getFacetSharedPrefs(this);
 
         Intent intent = getIntent();
@@ -65,6 +59,9 @@ public class LensPickerTrampolineActivity extends Activity {
             finish();
             return;
         }
+
+        // Hide the shade if switching to a different facet.
+        hideNotificationsShade();
 
         String facetId = intent.getStringExtra(LensPickerConstants.EXTRA_FACET_ID);
 
@@ -92,7 +89,7 @@ public class LensPickerTrampolineActivity extends Activity {
                 Log.d(TAG, "Launching saved package: " + savedPackageName);
             }
 
-            launchIntent = mPackageManager.getLaunchIntentForPackage(savedPackageName);
+            launchIntent = packageManager.getLaunchIntentForPackage(savedPackageName);
         } else {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Delegating to LensPickerActivity to handle application launch.");
@@ -113,8 +110,8 @@ public class LensPickerTrampolineActivity extends Activity {
      */
     private boolean executeSystemCommand(String command) {
         switch (command) {
-            case LensPickerConstants.SYSTEM_COMMAND_SHOW_NOTIFICATIONS:
-                expandNotificationShade();
+            case LensPickerConstants.SYSTEM_COMMAND_TOGGLE_NOTIFICATIONS:
+                toggleNotificationsShade();
                 return true;
 
             default:
@@ -195,22 +192,22 @@ public class LensPickerTrampolineActivity extends Activity {
         return true;
     }
 
-    private void expandNotificationShade() {
+    private void hideNotificationsShade() {
         IStatusBarService service = getStatusBarService();
         if (service != null) {
             try {
-                service.expandNotificationsPanel();
+                service.collapsePanels();
             } catch (RemoteException e) {
                 // Do nothing
             }
         }
     }
 
-    private void hideNotificationsShade() {
+    private void toggleNotificationsShade() {
         IStatusBarService service = getStatusBarService();
         if (service != null) {
             try {
-                service.collapsePanels();
+                service.togglePanel();
             } catch (RemoteException e) {
                 // Do nothing
             }
