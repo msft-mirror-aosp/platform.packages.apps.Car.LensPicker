@@ -55,8 +55,9 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/lens_header_height"
         app:offsetRows="true"
-        android:layout_marginTop="@dimen/lens_header_height" />
+        app:showDivider="false" />
     <RelativeLayout
         android:id="@+id/no_app_installed"
         android:layout_width="match_parent"
