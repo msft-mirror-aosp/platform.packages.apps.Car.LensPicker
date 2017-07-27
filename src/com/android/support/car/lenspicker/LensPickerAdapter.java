@@ -45,7 +45,6 @@ public class LensPickerAdapter extends RecyclerView.Adapter<LensPickerRow>
     private final Context mContext;
     private final LensPickerSelectionHandler mSelectionHandler;
     private final List<LensPickerItem> mItems = new ArrayList<>();
-    private int mMaxItems;
 
     private LoadTask mLoader;
     private PackageManager mPackageManager;
@@ -79,12 +78,12 @@ public class LensPickerAdapter extends RecyclerView.Adapter<LensPickerRow>
 
     @Override
     public int getItemCount() {
-        return Math.min(mItems.size(), mMaxItems);
+        return mItems.size();
     }
 
     @Override
     public void setMaxItems(int maxItems) {
-        mMaxItems = maxItems;
+        // Ignore maxItems
     }
 
     private class LoadTask extends AsyncTask<Void, Void, Void> {
