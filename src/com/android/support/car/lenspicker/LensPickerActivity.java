@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ResolveInfo.DisplayNameComparator;
 import android.os.Bundle;
 import android.service.media.MediaBrowserService;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ import android.view.View;
 import com.android.car.view.PagedListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -159,6 +161,12 @@ public class LensPickerActivity extends Activity implements LensPickerSelectionH
             printResolveInfo("before dedupe", packageList);
             printResolveInfo("after dedupe", filteredPackageList);
         }
+
+        // If presenting a category, alphabetize the list based on name.
+        if (categories != null) {
+            Collections.sort(filteredPackageList, new DisplayNameComparator(mPackageManager));
+        }
+
 
         return filteredPackageList;
     }
