@@ -23,6 +23,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
+LOCAL_RESOURCE_DIR += frameworks/support/core-ui/res
 LOCAL_RESOURCE_DIR += frameworks/support/design/res
 
 LOCAL_PACKAGE_NAME := CarLensPickerApp
