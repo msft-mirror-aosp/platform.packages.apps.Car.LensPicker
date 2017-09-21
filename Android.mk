@@ -27,6 +27,7 @@ LOCAL_RESOURCE_DIR += frameworks/support/core-ui/res
 LOCAL_RESOURCE_DIR += frameworks/support/design/res
 
 LOCAL_PACKAGE_NAME := CarLensPickerApp
+LOCAL_OVERRIDES_PACKAGES += Launcher2 Launcher3
 
 LOCAL_MODULE_TAGS := optional
 
