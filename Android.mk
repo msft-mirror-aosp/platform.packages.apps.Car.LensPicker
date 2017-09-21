@@ -22,9 +22,10 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
-LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
-LOCAL_RESOURCE_DIR += frameworks/support/core-ui/res
-LOCAL_RESOURCE_DIR += frameworks/support/design/res
+LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res \
+    frameworks/support/car/res \
+    frameworks/support/core-ui/res \
+    frameworks/support/design/res
 
 LOCAL_PACKAGE_NAME := CarLensPickerApp
 LOCAL_OVERRIDES_PACKAGES += Launcher2 Launcher3
@@ -33,11 +34,13 @@ LOCAL_MODULE_TAGS := optional
 
 include packages/apps/Car/libs/car-stream-ui-lib/car-stream-ui-lib.mk
 
-LOCAL_STATIC_JAVA_LIBRARIES += android-support-v4
-LOCAL_STATIC_JAVA_LIBRARIES += android-support-design
-LOCAL_STATIC_JAVA_LIBRARIES += car-stream-lib
+LOCAL_STATIC_JAVA_LIBRARIES += android-support-v4 \
+    android-support-car \
+    android-support-design \
+    car-stream-lib
 
-LOCAL_AAPT_FLAGS += --extra-packages android.support.design
+LOCAL_AAPT_FLAGS += --extra-packages android.support.car \
+    --extra-packages android.support.design
 
 # Include support-v7-appcompat, if not already included
 ifeq (,$(findstring android-support-v7-appcompat,$(LOCAL_STATIC_JAVA_LIBRARIES)))
