@@ -28,13 +28,13 @@ import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.provider.MediaStore;
 import android.support.annotation.StringRes;
+import android.support.car.utils.ColumnCalculator;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.android.car.stream.ui.ColumnCalculator;
 import com.android.car.view.PagedListView;
 
 import java.util.Iterator;
@@ -107,11 +107,11 @@ public class LensResolverActivity extends Activity implements
             Log.d(TAG, "Found " + size + " matching activities.");
         }
 
-        // The title container should match the width of the StreamCards in the list. Those cards
+        // The title container should match the width of the ColumnCards in the list. Those cards
         // have their width set depending on the column span, which changes between screen sizes.
         // As a result, need to set the width of the title container programmatically.
         int defaultColumnSpan =
-                getResources().getInteger(R.integer.stream_card_default_column_span);
+                getResources().getInteger(R.integer.column_card_default_column_span);
         int cardWidth = ColumnCalculator.getInstance(this /* context */).getSizeForColumnSpan(
                 defaultColumnSpan);
         View titleAndCheckboxContainer = findViewById(R.id.title_checkbox_container);
