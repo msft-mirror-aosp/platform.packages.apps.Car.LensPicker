@@ -23,12 +23,11 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.car.widget.PagedListView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
-import com.android.car.view.PagedListView;
 
 import java.util.ArrayList;
 import java.util.List;

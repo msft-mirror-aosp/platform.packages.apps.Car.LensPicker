@@ -29,13 +29,13 @@ import android.os.PatternMatcher;
 import android.provider.MediaStore;
 import android.support.annotation.StringRes;
 import android.support.car.utils.ColumnCalculator;
+import android.support.car.widget.DayNightStyle;
+import android.support.car.widget.PagedListView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
-import com.android.car.view.PagedListView;
 
 import java.util.Iterator;
 import java.util.List;
@@ -120,7 +120,7 @@ public class LensResolverActivity extends Activity implements
         mAlwaysCheckbox = (CheckBox) findViewById(R.id.always_checkbox);
 
         PagedListView pagedListView = (PagedListView) findViewById(R.id.list_view);
-        pagedListView.setLightMode();
+        pagedListView.setDayNightStyle(DayNightStyle.FORCE_DAY);
 
         ResolverAdapter adapter = new ResolverAdapter(this /* context */, infos);
         adapter.setSelectionHandler(this);
