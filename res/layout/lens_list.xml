@@ -22,12 +22,12 @@
     android:layout_height="match_parent"
     android:background="@color/car_lens_picker_bg_color"
     android:clipChildren="false">
-    <com.android.car.view.PagedListView
+    <android.support.car.widget.PagedListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/lens_header_height"
-        app:offsetRows="true"
+        app:offsetRows="false"
         app:showDivider="false" />
     <RelativeLayout
         android:id="@+id/no_app_installed"
