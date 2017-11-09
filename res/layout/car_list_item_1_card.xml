@@ -35,7 +35,7 @@
             android:id="@+id/icon"
             android:layout_width="@dimen/car_list_item_icon_size"
             android:layout_height="@dimen/car_list_item_icon_size"
-            android:layout_marginLeft="@dimen/stream_card_keyline_1"
+            android:layout_marginLeft="@dimen/car_keyline_1"
             android:scaleType="centerCrop"
             android:layout_gravity="center_vertical|left" />
         <TextView
@@ -43,8 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|left"
-            android:layout_marginLeft="@dimen/stream_card_keyline_2"
-            android:layout_marginRight="@dimen/stream_card_keyline_1"
+            android:layout_marginLeft="@dimen/car_keyline_2"
+            android:layout_marginRight="@dimen/car_keyline_1"
             style="@style/CarBody1"
             android:singleLine="true" />
         <ImageView
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="@dimen/stream_card_keyline_1"
+            android:layout_marginRight="@dimen/car_keyline_1"
             android:scaleType="center" />
     </android.support.car.widget.ColumnCardView>
 </FrameLayout>
