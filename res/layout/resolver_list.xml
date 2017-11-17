@@ -27,7 +27,7 @@
         android:id="@+id/title_checkbox_container"
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/lens_header_height" >
+        android:layout_height="@dimen/car_app_bar_height" >
 
         <TextView
             android:id="@+id/title"
@@ -55,15 +55,15 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/lens_header_height"
+        android:layout_marginTop="@dimen/car_app_bar_height"
         app:offsetRows="false"
-        app:showDivider="false" />
+        app:showPagedListViewDivider="false" />
     <RelativeLayout
         android:id="@+id/no_app_installed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:layout_marginTop="@dimen/lens_header_height" >
+        android:layout_marginTop="@dimen/car_app_bar_height" >
         <ImageView
             android:id="@+id/error_icon"
             android:layout_width="@dimen/lens_no_compatible_app_installed_icon_size"
