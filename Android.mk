@@ -38,8 +38,6 @@ LOCAL_STATIC_ANDROID_LIBRARIES += \
     android-support-car \
     android-support-design
 
-LOCAL_STATIC_JAVA_LIBRARIES += car-stream-lib
-
 # Include support-v7-appcompat, if not already included
 ifeq (,$(findstring android-support-v7-appcompat,$(LOCAL_STATIC_ANDROID_LIBRARIES)))
 LOCAL_STATIC_ANDROID_LIBRARIES += android-support-v7-appcompat
