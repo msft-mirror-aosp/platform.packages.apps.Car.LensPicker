@@ -23,8 +23,6 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ResolveInfo.DisplayNameComparator;
 import android.os.Bundle;
 import android.service.media.MediaBrowserService;
-import android.support.car.widget.DayNightStyle;
-import android.support.car.widget.PagedListView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +31,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
+import androidx.car.widget.DayNightStyle;
+import androidx.car.widget.PagedListView;
 
 /**
  * An Activity to present the user with a list of applications that can be started for a given
