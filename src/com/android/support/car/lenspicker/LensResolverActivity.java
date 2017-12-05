@@ -28,9 +28,6 @@ import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.provider.MediaStore;
 import android.support.annotation.StringRes;
-import android.support.car.utils.ColumnCalculator;
-import android.support.car.widget.DayNightStyle;
-import android.support.car.widget.PagedListView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -40,6 +37,10 @@ import android.widget.TextView;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import androidx.car.utils.ColumnCalculator;
+import androidx.car.widget.DayNightStyle;
+import androidx.car.widget.PagedListView;
 
 /**
  * An activity that is displayed when the system attempts to start an Intent for which there is

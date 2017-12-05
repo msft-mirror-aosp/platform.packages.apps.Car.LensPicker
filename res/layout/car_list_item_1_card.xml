@@ -22,7 +22,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <android.support.car.widget.ColumnCardView
+    <androidx.car.widget.ColumnCardView
         android:id="@+id/stream_card"
         android:layout_width="match_parent"
         android:layout_height="@dimen/car_list_item_height"
@@ -54,5 +54,5 @@
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="@dimen/car_keyline_1"
             android:scaleType="center" />
-    </android.support.car.widget.ColumnCardView>
+    </androidx.car.widget.ColumnCardView>
 </FrameLayout>
