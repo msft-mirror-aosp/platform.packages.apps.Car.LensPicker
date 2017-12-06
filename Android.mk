@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+ifneq ($(TARGET_BUILD_PDK), true)
+
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -49,3 +51,5 @@ LOCAL_DEX_PREOPT := false
 LOCAL_CERTIFICATE := platform
 
 include $(BUILD_PACKAGE)
+
+endif
