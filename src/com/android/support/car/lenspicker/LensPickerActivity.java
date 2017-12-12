@@ -16,15 +16,13 @@
 package com.android.support.car.lenspicker;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Canvas;
+import android.content.pm.ResolveInfo.DisplayNameComparator;
 import android.os.Bundle;
 import android.service.media.MediaBrowserService;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +30,7 @@ import android.view.View;
 import com.android.car.view.PagedListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -59,7 +58,6 @@ public class LensPickerActivity extends Activity implements LensPickerSelectionH
 
         setContentView(R.layout.lens_list);
         mPagedListView = (PagedListView) findViewById(R.id.list_view);
-        mPagedListView.setDefaultItemDecoration(new ItemDecoration(this));
         // Set this to light mode, since the scroll bar buttons always appear
         // on top of a dark scrim.
         mPagedListView.setLightMode();
@@ -164,6 +162,12 @@ public class LensPickerActivity extends Activity implements LensPickerSelectionH
             printResolveInfo("after dedupe", filteredPackageList);
         }
 
+        // If presenting a category, alphabetize the list based on name.
+        if (categories != null) {
+            Collections.sort(filteredPackageList, new DisplayNameComparator(mPackageManager));
+        }
+
+
         return filteredPackageList;
     }
 
@@ -212,18 +216,5 @@ public class LensPickerActivity extends Activity implements LensPickerSelectionH
 
         LensPickerUtils.launch(this /* context */, mSharedPrefs, facetId, packageName,
                 launchIntent);
-    }
-
-    /**
-     * Default {@link com.android.car.view.PagedListView.Decoration} for the {@link PagedListView}
-     * that removes the dividing lines between items.
-     */
-    private static class ItemDecoration extends PagedListView.DividerDecoration {
-        public ItemDecoration(Context context) {
-            super(context);
-        }
-
-        @Override
-        public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {}
     }
 }
