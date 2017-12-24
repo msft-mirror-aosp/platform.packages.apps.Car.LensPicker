@@ -27,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/car_app_bar_height"
-        app:offsetRows="false"
         app:showPagedListViewDivider="false" />
     <RelativeLayout
         android:id="@+id/no_app_installed"
