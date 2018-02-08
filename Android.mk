@@ -33,10 +33,7 @@ LOCAL_MODULE_TAGS := optional
 
 include packages/apps/Car/libs/car-stream-ui-lib/car-stream-ui-lib.mk
 
-LOCAL_STATIC_ANDROID_LIBRARIES += \
-    android-support-v4 \
-    android-support-car \
-    android-support-design
+LOCAL_STATIC_ANDROID_LIBRARIES += $(ANDROID_SUPPORT_CAR_TARGETS)
 
 # Include support-v7-appcompat, if not already included
 ifeq (,$(findstring android-support-v7-appcompat,$(LOCAL_STATIC_ANDROID_LIBRARIES)))
