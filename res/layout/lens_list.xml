@@ -52,6 +52,6 @@
             android:layout_marginRight="@dimen/lens_no_compatible_app_installed_text_right_margin"
             android:gravity="center"
             android:textColor="@color/car_grey_100"
-            style="@style/CarBody1" />
+            style="@style/TextAppearance.Car.Body1" />
     </RelativeLayout>
 </FrameLayout>
