@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            style="@style/CarBody1.Light" />
+            style="@style/TextAppearance.Car.Body1.Light" />
 
         <CheckBox
             android:id="@+id/always_checkbox"
@@ -48,7 +48,7 @@
             android:checked="true"
             android:paddingStart="@dimen/resolver_list_checkbox_spacing"
             android:text="@string/alwaysUse"
-            style="@style/CarBody1.Light" />
+            style="@style/TextAppearance.Car.Body1.Light" />
     </RelativeLayout>
 
     <androidx.car.widget.PagedListView
@@ -81,6 +81,6 @@
             android:layout_marginRight="@dimen/lens_no_compatible_app_installed_text_right_margin"
             android:gravity="center"
             android:textColor="@color/car_grey_100"
-            style="@style/CarBody1" />
+            style="@style/TextAppearance.Car.Body1" />
     </RelativeLayout>
 </FrameLayout>

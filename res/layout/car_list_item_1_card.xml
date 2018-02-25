@@ -45,7 +45,7 @@
             android:layout_gravity="center_vertical|left"
             android:layout_marginLeft="@dimen/car_keyline_2"
             android:layout_marginRight="@dimen/car_keyline_1"
-            style="@style/CarBody1"
+            style="@style/TextAppearance.Car.Body1"
             android:singleLine="true" />
         <ImageView
             android:id="@+id/right_icon"
