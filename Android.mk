@@ -26,6 +26,7 @@ LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
 LOCAL_RESOURCE_DIR += frameworks/support/design/res
 
 LOCAL_PACKAGE_NAME := CarLensPickerApp
+LOCAL_PRIVATE_PLATFORM_APIS := true
 
 LOCAL_MODULE_TAGS := optional
 
