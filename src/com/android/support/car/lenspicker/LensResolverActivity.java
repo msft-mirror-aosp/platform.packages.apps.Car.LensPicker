@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.provider.MediaStore;
 import android.support.annotation.StringRes;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -169,8 +170,17 @@ public class LensResolverActivity extends Activity implements
         ComponentName component = item.getLaunchIntent().getComponent();
 
         if (mAlwaysCheckbox.isChecked()) {
+            PackageManager pm = getPackageManager();
+            if (info.handleAllWebDataURI) {
+                // Set default Browser if needed
+                int userId = getUserId();
+                String packageName = pm.getDefaultBrowserPackageNameAsUser(userId);
+                if (TextUtils.isEmpty(packageName)) {
+                    pm.setDefaultBrowserPackageNameAsUser(info.activityInfo.packageName, userId);
+                }
+            }
             IntentFilter filter = buildIntentFilterForResolveInfo(info);
-            getPackageManager().addPreferredActivity(filter, info.match, mComponentSet, component);
+            pm.addPreferredActivity(filter, info.match, mComponentSet, component);
         }
 
         // Now launch the original resolve intent but correctly set the component.
