@@ -15,9 +15,11 @@
  */
 package com.android.support.car.lenspicker;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -93,8 +95,6 @@ public class ResolverAdapter extends RecyclerView.Adapter<ResolverListRow>
 
             for (ResolveInfo info : mResolveInfos) {
                 String packageName = LensPickerUtils.getPackageName(info);
-                Intent launchIntent = LensPickerUtils.getLaunchIntent(packageName, info,
-                        packageManager);
 
                 try {
                     ApplicationInfo aInfo = packageManager.getApplicationInfo(packageName, 0);
@@ -113,6 +113,16 @@ public class ResolverAdapter extends RecyclerView.Adapter<ResolverListRow>
                     // block then simply set this string to package name.
                     if (displayName.equals("")) {
                         displayName = getComponentLabel(packageManager, aInfo);
+                    }
+                    Intent launchIntent = LensPickerUtils.getLaunchIntent(packageName, info,
+                            packageManager);
+                    // If launchIntent is null, create an intent from the ResolverInfo
+                    if (launchIntent == null) {
+                        launchIntent = new Intent();
+                        ActivityInfo activity = info.activityInfo;
+                        launchIntent.setComponent(
+                                new ComponentName(activity.applicationInfo.packageName,
+                                activity.name));
                     }
 
                     items.add(new LensPickerItem(displayName,
