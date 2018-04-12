@@ -32,7 +32,7 @@ LOCAL_OVERRIDES_PACKAGES += Launcher2 Launcher3
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_STATIC_ANDROID_LIBRARIES += android-support-car
+LOCAL_STATIC_ANDROID_LIBRARIES += androidx.car_car
 
 LOCAL_PROGUARD_ENABLED := disabled
 
