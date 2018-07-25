@@ -36,7 +36,6 @@ import android.widget.TextView;
 
 import androidx.annotation.StringRes;
 import androidx.car.util.ColumnCalculator;
-import androidx.car.widget.DayNightStyle;
 import androidx.car.widget.PagedListView;
 
 import java.util.Iterator;
@@ -122,7 +121,6 @@ public class LensResolverActivity extends Activity implements
         mAlwaysCheckbox = (CheckBox) findViewById(R.id.always_checkbox);
 
         PagedListView pagedListView = (PagedListView) findViewById(R.id.list_view);
-        pagedListView.setDayNightStyle(DayNightStyle.ALWAYS_LIGHT);
 
         ResolverAdapter adapter = new ResolverAdapter(this /* context */, infos);
         adapter.setSelectionHandler(this);
