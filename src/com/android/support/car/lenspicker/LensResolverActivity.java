@@ -113,7 +113,7 @@ public class LensResolverActivity extends Activity implements
         // As a result, need to set the width of the title container programmatically.
         int defaultColumnSpan =
                 getResources().getInteger(R.integer.column_card_default_column_span);
-        int cardWidth = ColumnCalculator.getInstance(this /* context */).getSizeForColumnSpan(
+        int cardWidth = ColumnCalculator.getInstance(this /* context */).getColumnSpanWidth(
                 defaultColumnSpan);
         View titleAndCheckboxContainer = findViewById(R.id.title_checkbox_container);
         titleAndCheckboxContainer.getLayoutParams().width = cardWidth;
